@@ -12,14 +12,16 @@
   "last_message",
   "is_read",
   "guest",
-  "users"
+  "users",
+  "chatgpt"
  ],
  "fields": [
   {
    "fieldname": "last_message",
    "fieldtype": "Data",
    "hidden": 1,
-   "label": "Last Message"
+   "label": "Last Message",
+   "width": "1000"
   },
   {
    "default": "0",
@@ -59,11 +61,17 @@
    "fieldtype": "Table MultiSelect",
    "label": "Users",
    "options": "Chat Room User"
+  },
+  {
+   "default": "0",
+   "fieldname": "chatgpt",
+   "fieldtype": "Check",
+   "label": "chatgpt"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-08-30 20:12:02.597060",
+ "modified": "2023-05-31 13:26:09.394986",
  "modified_by": "Administrator",
  "module": "Frappe Chat",
  "name": "Chat Room",

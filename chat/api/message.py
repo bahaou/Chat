@@ -4,6 +4,25 @@ from chat.utils import update_room, is_user_allowed_in_room, raise_not_authorize
 
 
 @frappe.whitelist(allow_guest=True)
+def chatgpt(content: str , room: str):
+	#frappe.throw("aa")
+	user="Business Plus"
+	email="businessplus@slnee.com"
+	try:
+		user=frappe.get_doc("User",email)
+	except:
+		return
+	if not user:
+		return
+	send(content,user,room,email)
+
+
+
+
+
+
+
+@frappe.whitelist(allow_guest=True)
 def send(content: str, user: str, room: str, email: str):
     """Send the message via socketio
 
@@ -15,7 +34,8 @@ def send(content: str, user: str, room: str, email: str):
     """
     if not is_user_allowed_in_room(room, email, user):
         raise_not_authorized_error()
-
+    chatgpt=frappe.db.get_value("Chat Room",room,"chatgpt")
+    #update_room(room=room, last_message=content)
     new_message = frappe.get_doc(
         {
             "doctype": "Chat Message",
@@ -25,9 +45,8 @@ def send(content: str, user: str, room: str, email: str):
             "sender_email": email,
         }
     ).insert()
-
-    update_room(room=room, last_message=content)
-
+    if not chatgpt or email=="businessplus@slnee.com":
+        update_room(room=room, last_message=content[:80])
     result = {
         "content": content,
         "user": user,
@@ -42,7 +61,8 @@ def send(content: str, user: str, room: str, email: str):
         "is_guest": "true" if user == "Guest" else "false",
     }
     typing_event = f"{room}:typing"
-
+    if chatgpt and email!="businessplus@slnee.com":
+        return
     for chat_user in frappe.get_cached_doc("Chat Room", room).get_members():
         frappe.publish_realtime(event=typing_event, user=chat_user, message=typing_data)
         frappe.publish_realtime(

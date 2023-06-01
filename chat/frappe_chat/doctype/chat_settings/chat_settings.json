@@ -9,6 +9,11 @@
   "start_time",
   "end_time",
   "chat_operators",
+  "column_break_8dwgt",
+  "rapidapi_key",
+  "rapidapi_host",
+  "total_tokens",
+  "section_break_i21hh",
   "allowed_roles"
  ],
  "fields": [
@@ -44,12 +49,38 @@
    "fieldtype": "Table MultiSelect",
    "label": "Chat Operators",
    "options": "Chat Room User"
+  },
+  {
+   "fieldname": "column_break_8dwgt",
+   "fieldtype": "Column Break",
+   "label": "Chat GPT"
+  },
+  {
+   "fieldname": "rapidapi_key",
+   "fieldtype": "Data",
+   "label": "RapidAPI Key"
+  },
+  {
+   "fieldname": "rapidapi_host",
+   "fieldtype": "Data",
+   "label": "RapidAPI Host"
+  },
+  {
+   "fieldname": "section_break_i21hh",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "total_tokens",
+   "fieldtype": "Data",
+   "label": "Total Tokens",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2022-08-30 20:13:35.769719",
+ "modified": "2023-06-01 10:32:10.828466",
  "modified_by": "Administrator",
  "module": "Frappe Chat",
  "name": "Chat Settings",

@@ -1,0 +1,54 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-05-31 12:49:55.592417",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "chatbot_name",
+  "conversations",
+  "train"
+ ],
+ "fields": [
+  {
+   "fieldname": "conversations",
+   "fieldtype": "Long Text",
+   "label": "Conversations"
+  },
+  {
+   "fieldname": "train",
+   "fieldtype": "Button",
+   "label": "Train"
+  },
+  {
+   "fieldname": "chatbot_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Name",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2023-05-31 16:03:27.098036",
+ "modified_by": "Administrator",
+ "module": "Frappe Chat",
+ "name": "ChatBot Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

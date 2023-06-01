@@ -38,12 +38,13 @@
    "fieldtype": "Text",
    "in_list_view": 1,
    "label": "Content",
-   "reqd": 1
+   "reqd": 1,
+   "width": "1000"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-10-07 15:33:19.522381",
+ "modified": "2023-05-31 13:18:30.487741",
  "modified_by": "Administrator",
  "module": "Frappe Chat",
  "name": "Chat Message",
