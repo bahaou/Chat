@@ -1,0 +1,71 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2023-06-11 08:51:45.542061",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "main_question",
+  "other_possibilities",
+  "answer",
+  "gif"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "BOT-TRN-"
+  },
+  {
+   "fieldname": "main_question",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Main Question",
+   "reqd": 1
+  },
+  {
+   "fieldname": "other_possibilities",
+   "fieldtype": "Small Text",
+   "label": "Other possibilities"
+  },
+  {
+   "fieldname": "answer",
+   "fieldtype": "Text",
+   "in_list_view": 1,
+   "label": "Answer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "gif",
+   "fieldtype": "Attach Image",
+   "label": "Gif"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-06-11 09:07:48.914469",
+ "modified_by": "Administrator",
+ "module": "Frappe Chat",
+ "name": "ChatBot Train",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

@@ -12,6 +12,8 @@ import {
 frappe.provide('frappe.Chat');
 frappe.provide('frappe.Chat.settings');
 
+
+
 /** Spawns a chat widget on any web page */
 frappe.Chat = class {
   constructor() {
@@ -20,6 +22,7 @@ frappe.Chat = class {
 
   /** Create all the required elements for chat widget */
   create_app() {
+	
     this.$app_element = $(document.createElement('div'));
     this.$app_element.addClass('chat-app');
     this.$chat_container = $(document.createElement('div'));

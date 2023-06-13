@@ -14,7 +14,9 @@
   "rapidapi_host",
   "total_tokens",
   "section_break_i21hh",
-  "allowed_roles"
+  "allowed_roles",
+  "section_break_mljfs",
+  "gifs"
  ],
  "fields": [
   {
@@ -75,12 +77,22 @@
    "fieldtype": "Data",
    "label": "Total Tokens",
    "read_only": 1
+  },
+  {
+   "fieldname": "section_break_mljfs",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "gifs",
+   "fieldtype": "Table",
+   "label": "Gifs",
+   "options": "Gif Item"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-06-01 10:32:10.828466",
+ "modified": "2023-06-11 09:01:22.466825",
  "modified_by": "Administrator",
  "module": "Frappe Chat",
  "name": "Chat Settings",

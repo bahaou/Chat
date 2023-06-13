@@ -25,3 +25,25 @@ def train_chatbot(chat):
 	chatbot=ChatBot("Business Plus")
 	trainer=ListTrainer(chatbot)
 	trainer.train(chat)
+
+def train(main,answer,pos=[],gif=None,train=None):
+	pos.append(main)
+	chatbot=ChatBot("Business Plus")
+	trainer=ListTrainer(chatbot)
+	for p in pos:
+		trainer.train([p,answer])
+	if gif:
+		settings=frappe.get_doc("Chat Settings")
+		for g in settings.gifs:
+			if train==train:
+				g.description=answer[:30]
+				g.file=gif
+				settings.save()
+				frappe.db.commit()
+				return
+		new=settings.append("gifs",{})
+		new.description=answer[:30]
+		new.file=gif
+		new.train=train
+		settings.save()
+	frappe.db.commit()

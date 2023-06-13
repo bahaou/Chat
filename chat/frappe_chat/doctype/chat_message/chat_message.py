@@ -14,7 +14,7 @@ class ChatMessage(Document):
 	
 
 	@frappe.whitelist()
-	def after_insert(self):
+	def after_insertt(self):
 		room=frappe.get_doc('Chat Room',self.room)
 		if not room.chatgpt:
 			return
@@ -53,6 +53,13 @@ class ChatMessage(Document):
 						response=j
 					else:
 						response=chatbot(self.content)
+						gifs={}
+						gif=frappe.get_doc("Chat Settings").gifs
+						for g in gif:
+							if g.description.replace("\n","") in response:
+								chatgpt(response,room.name)
+								chatgpt(g.file,room.name)
+								return
 		chatgpt(response,room.name)
 		#update_room(room=room.name,last_message=response)
 		#frappe.db.set_value("Chat Room",room.name,"last_message",response)

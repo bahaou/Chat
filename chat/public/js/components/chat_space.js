@@ -10,6 +10,7 @@ import {
   get_avatar_html,
 } from './chat_utils';
 
+
 export default class ChatSpace {
   constructor(opts) {
     this.chat_list = opts.chat_list;
@@ -20,6 +21,8 @@ export default class ChatSpace {
   }
 
   setup() {
+	console.log("space")
+	
     this.$chat_space = $(document.createElement('div'));
     this.typing = false;
     this.$chat_space.addClass('chat-space');
@@ -76,10 +79,98 @@ export default class ChatSpace {
   setup_messages(messages_list) {
     this.$chat_space_container = $(document.createElement('div'));
     this.$chat_space_container.addClass('chat-space-container');
-
+    
     this.make_messages_html(messages_list);
 
     this.$chat_space_container.html(this.message_html);
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////add boxes here
+
+this.$chat_space_boxes = $(document.createElement('div'))
+    var room=this.profile.room;
+    frappe.call({
+	method:"chat.api.chatbox.first_box",
+	args:{"room_name":this.profile.room},
+	callback:function(r){
+		if (r.message){
+			this.$chat_space_boxes = $(document.createElement('div'));
+			var buttons=""
+			
+			for (let i=0;i<r.message.length;i++){
+				buttons=buttons+"<button   type='button' id='"+r.message[i]+"' class='btn btn-default btn-box'>"+__(r.message[i])+"</button>"
+			}
+			
+			this.$chat_space_boxes.addClass('chat-space-boxes');
+			this.$chat_space_boxes.html(buttons);
+			$(".chat-space-container").append(this.$chat_space_boxes)
+			$(".btn-box").on("click",function(){next_box($(this).attr('id'),room);})
+
+		}
+	}
+    })
+function next_box(box,room){
+	console.log("next")
+	var selected_box = $(document.createElement('div'));
+	selected_box.addClass('recipient-message');
+	selected_box.html("<div class='message-bubble'>"+__(box)+"</div>");
+	$(".chat-space-container").append(selected_box)
+	//send_message(
+       // box,
+      //  frappe.session["user_fullname"],
+      //  room,
+       // frappe.session["user_email"]
+   //   );
+
+
+	frappe.call({
+		method:"chat.api.chatbox.next_box",
+		args:{"box":box,"room_name":room},
+		callback:function(r){
+			if (r.message){
+				$(".chat-space-boxes").remove()
+				this.$chat_space_boxes = $(document.createElement('div'));
+				this.$chat_space_boxes.addClass('chat-space-boxes');
+				var buttons=""
+				for (let i=0;i<r.message.length;i++){
+					buttons=buttons+"<button  type='button' id='"+r.message[i]+"' class='btn btn-default btn-box'>"+__(r.message[i])+"</button>"
+				}
+				this.$chat_space_boxes.html(buttons);
+				$(".chat-space-container").append(this.$chat_space_boxes)
+				$(".btn-box").on("click",function(){next_box($(this).attr("id"),room);})
+
+			}else{
+				$(".chat-space-boxes").remove()
+
+    frappe.call({
+	method:"chat.api.chatbox.first_box",
+	args:{"room_name":room},
+	callback:function(r){
+		if (r.message){
+			this.$chat_space_boxes = $(document.createElement('div'));
+			var buttons=""
+			
+			for (let i=0;i<r.message.length;i++){
+				buttons=buttons+"<button  type='button' id='"+r.message[i]+"' class='btn btn-default btn-box'>"+__(r.message[i])+"</button>"
+			}
+			
+			this.$chat_space_boxes.addClass('chat-space-boxes');
+			this.$chat_space_boxes.html(buttons);
+			$(".chat-space-container").append(this.$chat_space_boxes)
+			$(".btn-box").on("click",function(){next_box($(this).attr("id"),room);})
+
+		}
+	}
+    })
+				}
+		}
+	})
+}
+    //console.log(this.profile.room_name);
+    //this.$chat_space_boxes = $(document.createElement('div'))
+    //this.$chat_space_boxes.html("<button type='button' class='btn btn-default'>Business Plus</button>")
+    //this.$chat_space_container.append(this.$chat_space_boxes);
+
+    
     this.$chat_space.append(this.$chat_space_container);
   }
 

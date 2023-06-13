@@ -5,3 +5,5 @@ export { default as ChatForm } from './chat_form';
 export { default as ChatWelcome } from './chat_welcome_screen';
 export { default as ChatUserSettings } from './chat_user_settings';
 export * from './chat_utils';
+
+console.log("index")

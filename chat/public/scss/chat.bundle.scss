@@ -16,6 +16,16 @@ $height: 582px;
   @return $result;
 }
 
+.message-bubble img{
+	cursor:pointer;
+}
+.btn-box{
+	margin:3px;
+
+}
+.chat-space-boxes{
+	border-top:solid 1px lightgray;
+}
 .chat-app {
   position: fixed;
   bottom: 24px;
