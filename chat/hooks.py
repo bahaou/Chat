@@ -16,6 +16,9 @@ is_frappe_above_v13 = int(frappe_version.split('.')[0]) > 13
 # ------------------
 
 # include js, css files in header of desk.html
+fixtures=["Chat Boxes"]
+
+
 app_include_css = ['chat.bundle.css'] if is_frappe_above_v13 else [
     '/assets/css/chat.css']
 app_include_js = ['chat.bundle.js'] if is_frappe_above_v13 else [
